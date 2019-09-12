@@ -10,9 +10,10 @@
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_ttf.h>
 #include "types.h"
+#include "worm.h"
 
 int main(void) {
 	
-	
+
 	return 0;
 }
