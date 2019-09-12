@@ -19,6 +19,12 @@
     <Filter Include="Source Files\Frontend">
       <UniqueIdentifier>{ed62577d-0922-453a-81ff-f2ddf37c515a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Class">
+      <UniqueIdentifier>{6c2711a0-bb7e-434e-8ddb-b63d4583d122}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Class">
+      <UniqueIdentifier>{15aba880-45f0-471b-abcc-46a4afd87588}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -27,6 +33,9 @@
     <ClCompile Include="keyboard.cpp">
       <Filter>Source Files\Frontend</Filter>
     </ClCompile>
+    <ClCompile Include="worm.cpp">
+      <Filter>Source Files\Class</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="keyboard.h">
@@ -34,6 +43,9 @@
     </ClInclude>
     <ClInclude Include="types.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="worm.h">
+      <Filter>Header Files\Class</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
