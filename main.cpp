@@ -14,6 +14,14 @@
 
 int main(void) {
 	
-
+	//Worm test
+	/*
+	Worm* w = new Worm(800, 616);
+	w->print();
+	w->walkRight();
+	w->print();
+	w->walkLeft();
+	w->print();
 	return 0;
+	*/
 }

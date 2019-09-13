@@ -45,11 +45,34 @@ void Worm::walkRight()
 	//no hay pared, entero movimiento
 	if (x < XMAX - MOVEINPIXELS)
 	{
-		x = x + MOVEINPIXELS;
+		//5 frames no motion
+		for (unsigned int i = 0; i < 5; i++)
+		{
+			this->update();
+		}
+
+		//3 frames warm-up (??)
+		for (unsigned int i = 0; i < 3; i++)
+		{
+			this->update();
+		}
+
+		frameCount = 15;
+		//3 rounds of walking frames (3 x 14 frames)
+		for (unsigned int i = 0; i < 3; i++)
+		{
+			for (unsigned int j = 0; j < frameCount; j++)
+			{
+				this->update();
+			}
+			x = x + MOVEINPIXELS / 3;	//cada vez 9 px adelante = 27 px total
+		}
 	}
 	//hay pared, mueve hasta la pared, termina movimiento?
 	else
 	{
+		//TODO: animation
+
 		x = XMAX;
 	}
 }
@@ -61,7 +84,28 @@ void Worm::walkLeft()
 	//no hay pared, entero movimiento
 	if (x > XMIN + MOVEINPIXELS)
 	{
-		x = x - MOVEINPIXELS;
+		//5 frames no motion
+		for (unsigned int i = 0; i < 5; i++)
+		{
+			this->update();
+		}
+
+		//3 frames warm-up (??)
+		for (unsigned int i = 0; i < 3; i++)
+		{
+			this->update();
+		}
+
+		frameCount = 15;
+		//3 rounds of walking frames (3 x 14 frames)
+		for (unsigned int i = 0; i < 3; i++)
+		{
+			for (unsigned int j = 0; j < frameCount; j++)
+			{
+				this->update();
+			}
+			x = x - MOVEINPIXELS / 3;	//cada vez 9 px adelante = 27 px total
+		}
 	}
 	//hay pared, mueve hasta la pared, termina movimiento?
 	else
@@ -77,7 +121,7 @@ void Worm::stopWalking()
 
 void Worm::update()
 {
-
+	//update frontend
 }
 
 //Debugging
