@@ -39,78 +39,47 @@ void Worm::jump()
 
 void Worm::walkRight()
 {
-	lookingRight = true;
-	state = MOVERIGHT;
+	//Walking sprites de 10 a 23
+	//Frames de 8 a 49 (total 42)
 
-	//no hay pared, entero movimiento
-	if (x < XMAX - MOVEINPIXELS)
+	if (frameCount < 22)
 	{
-		//5 frames no motion
-		for (unsigned int i = 0; i < 5; i++)
-		{
-			this->update();
-		}
-
-		//3 frames warm-up (??)
-		for (unsigned int i = 0; i < 3; i++)
-		{
-			this->update();
-		}
-
-		frameCount = 15;
-		//3 rounds of walking frames (3 x 14 frames)
-		for (unsigned int i = 0; i < 3; i++)
-		{
-			for (unsigned int j = 0; j < frameCount; j++)
-			{
-				this->update();
-			}
-			x = x + MOVEINPIXELS / 3;	//cada vez 9 px adelante = 27 px total
-		}
+		sprite = frameCount + 2;
 	}
-	//hay pared, mueve hasta la pared, termina movimiento?
-	else
+	if (22 <= frameCount < 36)
 	{
-		//TODO: animation
-
-		x = XMAX;
+		sprite = frameCount - 12;
 	}
+	if (36 <= frameCount < 50)
+	{
+		sprite = frameCount - 26;
+	}
+
+	if (sprite = 23)
+	{
+		x = x + MOVEINPIXELS/3;		//cada vez 9 px adelante = 27 px total
+	}
+	
 }
 
 void Worm::walkLeft()
 {
-	lookingRight = false;
-	state = MOVELEFT;
-	//no hay pared, entero movimiento
-	if (x > XMIN + MOVEINPIXELS)
+	if (frameCount < 22)
 	{
-		//5 frames no motion
-		for (unsigned int i = 0; i < 5; i++)
-		{
-			this->update();
-		}
-
-		//3 frames warm-up (??)
-		for (unsigned int i = 0; i < 3; i++)
-		{
-			this->update();
-		}
-
-		frameCount = 15;
-		//3 rounds of walking frames (3 x 14 frames)
-		for (unsigned int i = 0; i < 3; i++)
-		{
-			for (unsigned int j = 0; j < frameCount; j++)
-			{
-				this->update();
-			}
-			x = x - MOVEINPIXELS / 3;	//cada vez 9 px adelante = 27 px total
-		}
+		sprite = frameCount + 2;
 	}
-	//hay pared, mueve hasta la pared, termina movimiento?
-	else
+	if (22 <= frameCount < 36)
 	{
-		x = XMIN;
+		sprite = frameCount - 12;
+	}
+	if (36 <= frameCount < 50)
+	{
+		sprite = frameCount - 26;
+	}
+
+	if (sprite = 23)
+	{
+		x = x - MOVEINPIXELS / 3;		//cada vez 9 px adelante = 27 px total
 	}
 }
 
@@ -119,10 +88,6 @@ void Worm::stopWalking()
 	state = IDLE;
 }
 
-void Worm::update()
-{
-	//update frontend
-}
 
 //Debugging
 void Worm::print()
