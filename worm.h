@@ -24,5 +24,6 @@ private:
 	uint frameCount;
 	double x;
 	double y;
+	uint sprite;
 	bool lookingRight;
 };
