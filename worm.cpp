@@ -24,6 +24,7 @@ Worm::Worm(double pos_x, double pos_y)
 	x = pos_x;
 	y = pos_y;
 	lookingRight = true;
+	sprite = 0;
 }
 
 void Worm::jump()
