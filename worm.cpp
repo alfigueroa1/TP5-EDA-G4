@@ -89,6 +89,20 @@ void Worm::stopWalking()
 	state = IDLE;
 }
 
+int Worm::getSprite()
+{
+	return sprite;
+}
+
+double Worm::getX()
+{
+	return x;
+}
+
+double Worm::getY()
+{
+	return y;
+}
 
 //Debugging
 void Worm::print()
