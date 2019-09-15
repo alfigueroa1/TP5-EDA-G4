@@ -36,6 +36,12 @@
     <ClCompile Include="worm.cpp">
       <Filter>Source Files\Class</Filter>
     </ClCompile>
+    <ClCompile Include="allegro.cpp">
+      <Filter>Source Files\Class</Filter>
+    </ClCompile>
+    <ClCompile Include="front.cpp">
+      <Filter>Source Files\Frontend</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="keyboard.h">
@@ -46,6 +52,12 @@
     </ClInclude>
     <ClInclude Include="worm.h">
       <Filter>Header Files\Class</Filter>
+    </ClInclude>
+    <ClInclude Include="allegro.h">
+      <Filter>Header Files\Class</Filter>
+    </ClInclude>
+    <ClInclude Include="front.h">
+      <Filter>Header Files\Frontend</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
