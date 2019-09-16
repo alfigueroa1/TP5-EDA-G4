@@ -12,6 +12,46 @@ double XMAX = 1212;
 double YCOORD = 616;
 double MOVEINPIXELS = 27;
 
+/*******************************************************************************
+									CYCLE
+ ******************************************************************************/
+
+void Worm::cycle(void)
+{
+	while (endCycle == false)
+	{
+		events->getNextEvent();
+		if (events->getCurrentEvent() == )
+		{
+			next(UP);
+		}
+		else if (events->getCurrentEvent() == )
+		{
+			next(RIGHT);
+		}
+		else if (events->getCurrentEvent() == )
+		{
+			next(LEFT);
+		}
+		else if (events->getCurrentEvent() == )
+		{
+			next(HOLDRIGHT);
+		}
+		else if (events->getCurrentEvent() == )
+		{
+			next(HOLDLEFT);
+		}
+		else if (events->getCurrentEvent() == )
+		{
+			next(RELEASE);
+		}
+		else if (events->getCurrentEvent() == )
+		{
+			next(STOP);
+		}
+	}
+}
+
  /*********************************************************************************
 						 GLOBAL FUNCTION DEFINITIONS
   ********************************************************************************/

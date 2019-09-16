@@ -139,6 +139,7 @@
     <ClCompile Include="keyboard.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="worm.cpp" />
+    <ClCompile Include="wormFSM.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="allegro.h" />
@@ -146,6 +147,7 @@
     <ClInclude Include="keyboard.h" />
     <ClInclude Include="types.h" />
     <ClInclude Include="worm.h" />
+    <ClInclude Include="wormFSM.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
