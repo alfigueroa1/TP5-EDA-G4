@@ -47,16 +47,16 @@ void Worm::walkRight()
 	{
 		sprite = frameCount + 2;
 	}
-	if (22 <= frameCount < 36)
+	if (frameCount <= 22 && frameCount < 36)
 	{
 		sprite = frameCount - 12;
 	}
-	if (36 <= frameCount < 50)
+	if (frameCount <= 36 && frameCount < 50)
 	{
 		sprite = frameCount - 26;
 	}
 
-	if (sprite = 23)
+	if (sprite == 23)
 	{
 		x = x + MOVEINPIXELS/3;		//cada vez 9 px adelante = 27 px total
 	}
@@ -69,16 +69,16 @@ void Worm::walkLeft()
 	{
 		sprite = frameCount + 2;
 	}
-	if (22 <= frameCount < 36)
+	if (frameCount <= 22 && frameCount < 36)
 	{
 		sprite = frameCount - 12;
 	}
-	if (36 <= frameCount < 50)
+	if (frameCount <= 36 && frameCount < 50)
 	{
 		sprite = frameCount - 26;
 	}
 
-	if (sprite = 23)
+	if (sprite == 23)
 	{
 		x = x - MOVEINPIXELS / 3;		//cada vez 9 px adelante = 27 px total
 	}
