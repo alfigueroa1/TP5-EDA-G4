@@ -28,18 +28,20 @@ public:
 	//acciones
 	void nothing(void);
 	void jump();
+	void noJump();
 	void toggleRight(void);
 	void toggleLeft(void);
 	void walkRight();
 	void walkLeft();
 	void stopWalking();
+	void calcJump();
 	void print();
 	int getSprite();
 	double getX();
 	double getY();
 	void stateHand();
 	bool getLookingRight();
-
+	void normalizePos();
 private:
 	wormState state;
 	uint frameCount;

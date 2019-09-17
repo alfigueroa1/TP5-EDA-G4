@@ -4,6 +4,7 @@
 #include "front.h"
 
 void draw(Allegro& front, Worm& worm1, Worm& worm2) {
+	al_clear_to_color(al_map_rgb(0, 0, 0));
 	al_draw_bitmap(front.getBackground(), 0,0,0);
 	if (worm1.getSprite() < 0 || worm1.getSprite() >= DRAWABLES)
 		printf("Culpa de worm1\n");

@@ -24,8 +24,8 @@ void eventDispatcher(TrueEvent ev, Allegro& front, Worm& worm1, Worm& worm2);
 int main(void) {
 	if (!initFrontend())
 		return 0;
-	Worm worm1(500, 500);
-	Worm worm2(700, 700);
+	Worm worm1(701, 616);
+	Worm worm2(1100, 616);
 	Allegro front;
 	ALLEGRO_EVENT_QUEUE* event_queue;
 	ALLEGRO_EVENT ev;
@@ -85,8 +85,8 @@ void eventDispatcher(TrueEvent ev, Allegro& front, Worm& worm1, Worm& worm2) {
 	switch (ev) {
 	case UPPRESS:
 		worm1.jump();	break;
-	/*case UPUNPRESS:
-		worm1.stopJumping();	break;*/
+	case UPUNPRESS:
+		worm1.noJump();	break;
 	case LPRESS:
 		worm1.walkLeft();	break;
 	case LUNPRESS: case RUNPRESS:
@@ -95,8 +95,8 @@ void eventDispatcher(TrueEvent ev, Allegro& front, Worm& worm1, Worm& worm2) {
 		worm1.walkRight();		break;
 	case WPRESS:
 		worm2.jump();	break;
-	/*case WUNPRESS:
-		worm2.stopJumping();	break;*/
+	case WUNPRESS:
+		worm2.noJump();	break;
 	case APRESS:
 		worm2.walkLeft();	break;
 	case AUNPRESS: case DUNPRESS:
@@ -104,8 +104,8 @@ void eventDispatcher(TrueEvent ev, Allegro& front, Worm& worm1, Worm& worm2) {
 	case DPRESS:
 		worm2.walkRight();	break;
 	case TIMERUP:
-		worm1.evHand(ev);
-		worm2.evHand(ev);
+		worm1.stateHand();
+		worm2.stateHand();
 		draw(front, worm1, worm2);
 		break;
 	//default: draw(front, worm1, worm2); break;
