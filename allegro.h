@@ -7,6 +7,9 @@
 #include <allegro5/allegro_ttf.h>
 
 #define DRAWABLES 25
+#define SCREEN_H 696
+#define SCREEN_W 1920
+#define FPS	50.0
 
 class Allegro {
 public:
@@ -33,5 +36,7 @@ private:
 	ALLEGRO_BITMAP* background;
 	ALLEGRO_EVENT* ev;
 	ALLEGRO_EVENT_QUEUE* event_queue;
-	
+	bool initDrawables(ALLEGRO_BITMAP* drawList[DRAWABLES], ALLEGRO_BITMAP* background);
+	bool initDisplay(ALLEGRO_DISPLAY* display);
+
 };

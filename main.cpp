@@ -22,35 +22,31 @@ void eventDispatcher(TrueEvent ev, Allegro& front, Worm& worm1, Worm& worm2);
 
 
 int main(void) {
+	if (!initFrontend())
+		return 0;
 	Worm worm1(500, 500);
 	Worm worm2(700, 700);
 	Allegro front;
 	ALLEGRO_EVENT_QUEUE* event_queue;
 	ALLEGRO_EVENT ev;
 	TrueEvent trueEv = NOEV;
-
-	bool ok = true, redraw = false, once = true;
-	bool keyPressed[KEYS] = { false, false, false, false, false, false};
-	if (!initFrontend() || !initDrawables(front) || !initDisplay(front) || !initEvGen(front))
+	if (front.getDisplay() == NULL) {
 		return 0;
+	}
+	bool ok = true, redraw = false, once = true;
 	if (front.getDisplay() == NULL) {
 		printf("ERROR 2\n");
 		return 0;
 	}
-	if (front.getEvQueue() == NULL) {
-		printf("ERROR 1\n");
+	if (front.getBackground() == NULL) {
 		return 0;
 	}
-	al_register_event_source(front.getEvQueue(), al_get_display_event_source(front.getDisplay()));
-	al_register_event_source(front.getEvQueue(), al_get_keyboard_event_source());
-	al_register_event_source(front.getEvQueue(), al_get_timer_event_source(front.getTimer()));
-	al_start_timer(front.getTimer());
-
-	event_queue = front.getEvQueue();
-
+	al_clear_to_color(al_map_rgb(0, 0, 0));
+	al_draw_bitmap(front.getBackground(), 0, 0, 0);
+	al_flip_display();
 	while (ok)
 	{
-		trueEv = getNextEv(front.getEv(), front.getEvQueue(), trueEv, ok);
+		trueEv = getNextEv(&ev, front.getEvQueue(), trueEv, ok);
 		eventDispatcher(trueEv, front, worm1, worm2);
 	}
 
@@ -82,7 +78,7 @@ TrueEvent getNextEv(ALLEGRO_EVENT *ev , ALLEGRO_EVENT_QUEUE* evQueue, TrueEvent 
 		handleKeyPress(ev, aux, false, ok);
 	else
 		aux = NOEV;
-	return trueEv;
+	return aux;
 }
 
 void eventDispatcher(TrueEvent ev, Allegro& front, Worm& worm1, Worm& worm2) {
@@ -111,6 +107,9 @@ void eventDispatcher(TrueEvent ev, Allegro& front, Worm& worm1, Worm& worm2) {
 		worm1.evHand(ev);
 		worm2.evHand(ev);
 		draw(front, worm1, worm2);
+		break;
+	//default: draw(front, worm1, worm2); break;
 	}
+	
 	return;
 }
