@@ -33,6 +33,6 @@ enum MYKEYS {
  * FUNCTION PROTOTYPES WITH GLOBAL SCOPE
  ******************************************************************************/
 void handleKeyInputs(bool keyPressed[KEYS]);
-void handleKeyPress(ALLEGRO_EVENT& ev, bool keyPressed[KEYS], bool down, bool& ok);
+void handleKeyPress(ALLEGRO_EVENT* ev, TrueEvent& trueEv, bool down, bool& ok);
 
 #endif // KEYBOARD_H

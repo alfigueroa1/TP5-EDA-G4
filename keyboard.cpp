@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <allegro5/allegro.h>
 #include "keyboard.h"
+#include "front.h"
 #include "types.h"
  
  /*********************************************************************************
@@ -33,25 +34,49 @@ void handleKeyInputs(bool keyPressed[KEYS]) {
 }
 
 
-void handleKeyPress(ALLEGRO_EVENT &ev, bool keyPressed[KEYS], bool down, bool &ok) {
+void handleKeyPress(ALLEGRO_EVENT* ev, TrueEvent& trueEv, bool down, bool &ok) {
 	bool press;
 	if (down)
 		press = true;
 	else
 		press = false;
-	switch (ev.keyboard.keycode) {
+	switch (ev->keyboard.keycode) {
 		case ALLEGRO_KEY_UP:
-			keyPressed[KEY_UP] = press;		break;
+			if(press)
+				trueEv = UPPRESS;
+			else 
+				trueEv = UPUNPRESS;
+			break;
 		case ALLEGRO_KEY_LEFT:
-			keyPressed[KEY_LEFT] = press;	break;
+			if (press)
+				trueEv = LPRESS;
+			else
+				trueEv = LUNPRESS;
+			break;
 		case ALLEGRO_KEY_RIGHT:
-			keyPressed[KEY_RIGHT] = press;	break;
+			if (press)
+				trueEv = RPRESS;
+			else
+				trueEv = RUNPRESS;
+			break;
 		case ALLEGRO_KEY_W:
-			keyPressed[KEY_W] = press;		break;
-		case ALLEGRO_KEY_D:
-			keyPressed[KEY_D] = press;		break;
+			if (press)
+				trueEv = WPRESS;
+			else
+				trueEv = WUNPRESS;
+			break;
 		case ALLEGRO_KEY_A:
-			keyPressed[KEY_A] = press;		break;
+			if (press)
+				trueEv = APRESS;
+			else
+				trueEv = AUNPRESS;
+			break;
+		case ALLEGRO_KEY_D:
+			if (press)
+				trueEv = DPRESS;
+			else
+				trueEv = DUNPRESS;
+			break;
 		case ALLEGRO_KEY_ESCAPE:
 			if(press == false)
 				ok = false;
