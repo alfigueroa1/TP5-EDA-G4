@@ -41,6 +41,8 @@ private:
 	double y;
 	uint sprite;
 	bool lookingRight;
+	double speedX;
+	double speedY;
 	//										    UP						  RIGHT						    LEFT						HOLDRIGHT					  HOLDLEFT					  STOP
 	cellType wormTable[WSTATES][WEVENTS] = { { {JUMPING, WX(jump)},		 {LOOKRIGHT, WX(toggleRight)}, {LOOKLEFT, WX(toggleLeft)}, {LOOKRIGHT, WX(toggleRight)}, {LOOKLEFT, WX(toggleLeft)}, {IDLE, WX(nothing)} },				//IDLE
 											 { {JUMPING, WX(nothing)},	 {JUMPING, WX(nothing)},	   {JUMPING, WX(nothing)},	   {JUMPING, WX(nothing)},		 {JUMPING, WX(nothing)},	 {JUMPING, WX(nothing)} },			//JUMPING

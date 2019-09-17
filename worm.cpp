@@ -12,6 +12,11 @@ double XMAX = 1212;
 double YCOORD = 616;
 double MOVEINPIXELS = 27;
 
+double G = 0.24;
+double FPS = 50;				//frames per second
+double INITSPEED = 4.5;			//initial speed
+double PI = 3.14159265;
+
 /*******************************************************************************
 									CYCLE
  ******************************************************************************/
@@ -65,63 +70,149 @@ Worm::Worm(double pos_x, double pos_y)
 	y = pos_y;
 	lookingRight = true;
 	sprite = 0;
+	speedY = 0;
+	speedX = 0;
 }
 
 void Worm::jump()
 {
+	//inicializando el salto
 	if (state == IDLE)
 	{
-		//do jump
-		//(parable etc.)
-
-		state = IDLE;	//Termina salto
+		speedY = -sin(60 * PI / 180) * INITSPEED;	
+		speedX = cos(60 * PI / 180) * INITSPEED;
+		state = JUMPING;
+		frameCount = 0;
 	}
+
+	//warm-up:	sprites 0, 1, 2
+	if (state == JUMPING && 0 <= frameCount && frameCount < 3)
+	{
+		sprite = frameCount;
+		frameCount++;
+	}
+	
+	//salto:	sprite 3
+	else if (state == JUMPING && frameCount == 3)
+	{
+		sprite = 3;
+
+		//Nueva posicion
+		x += speedX * cos(60 / 180 * PI);
+		y += speedY;
+
+		//Nueva velocidad (speedX no cambia)
+		speedY = speedY + G;
+
+		//Termina salto (post jumping)
+		if (y >= YCOORD)
+		{
+			y = YCOORD;
+			frameCount++;
+		}
+	}
+
+	//post-jump:	sprites 4, 5, 6, 7, 8, 9
+	else if (state == JUMPING && 4 <= frameCount && frameCount < 10)
+	{
+		sprite = frameCount;
+		frameCount++;
+	}
+
+	//jump done
+	else if (frameCount == 10)
+	{
+		state = IDLE;
+		frameCount = 0;
+	}
+		
 }
 
 void Worm::walkRight()
 {
 	//Walking sprites de 10 a 23
-	//Frames de 8 a 49 (total 42)
+	//Frames de 0 a 44 (total 45) 
+	
+	//inicializando walk
+	if (frameCount == 0)
+	{
+		state = MOVERIGHT;
+	}
 
-	if (frameCount < 22)
+	//warm-up:	sprites 10, 11, 12 (??)
+	if (frameCount >= 0 && frameCount < 3)
 	{
-		sprite = frameCount + 2;
+		sprite = frameCount + 10;
 	}
-	if (frameCount <= 22 && frameCount < 36)
+
+	//walking:	sprites de 10 a 23
+	if (frameCount >= 3 && frameCount < 17)
 	{
-		sprite = frameCount - 12;
+		sprite = frameCount + 7;
 	}
-	if (frameCount <= 36 && frameCount < 50)
+	if (frameCount >= 17 && frameCount < 31)
 	{
-		sprite = frameCount - 26;
+		sprite = frameCount - 7;
+	}
+	if (frameCount >= 31 && frameCount < 45)
+	{
+		sprite = frameCount - 21;
 	}
 
 	if (sprite == 23)
 	{
 		x = x + MOVEINPIXELS/3;		//cada vez 9 px adelante = 27 px total
 	}
+
+	//walk done
+	if (frameCount == 44)
+	{
+		//algo
+	}
 	
+	frameCount++;
 }
 
 void Worm::walkLeft()
 {
-	if (frameCount < 22)
+	//inicializando walk
+	if (frameCount == 0)
 	{
-		sprite = frameCount + 2;
+		state = MOVELEFT;
 	}
-	if (frameCount <= 22 && frameCount < 36)
+
+	//warm-up:	sprites 10, 11, 12 (??)
+	if (frameCount >= 0 && frameCount < 3)
 	{
-		sprite = frameCount - 12;
+		sprite = frameCount + 10;
 	}
-	if (frameCount <= 36 && frameCount < 50)
+
+	//walking:	sprites de 10 a 23
+	if (frameCount >= 3 && frameCount < 17)
 	{
-		sprite = frameCount - 26;
+		sprite = frameCount + 7;
+	}
+	if (frameCount >= 17 && frameCount < 31)
+	{
+		sprite = frameCount - 7;
+	}
+	if (frameCount >= 31 && frameCount < 45)
+	{
+		sprite = frameCount - 21;
 	}
 
 	if (sprite == 23)
 	{
 		x = x - MOVEINPIXELS / 3;		//cada vez 9 px adelante = 27 px total
 	}
+
+	//walk done
+	if (frameCount == 44)
+	{
+		//algo
+	}
+
+	frameCount++;
 }
 
 void Worm::stopWalking()
