@@ -47,7 +47,8 @@ int main(void) {
 	while (ok)
 	{
 		trueEv = getNextEv(&ev, front.getEvQueue(), trueEv, ok);
-		eventDispatcher(trueEv, front, worm1, worm2);
+		if(trueEv != NOEV)
+			eventDispatcher(trueEv, front, worm1, worm2);
 	}
 
 	return 0;
@@ -67,17 +68,19 @@ int main(void) {
 
 TrueEvent getNextEv(ALLEGRO_EVENT *ev , ALLEGRO_EVENT_QUEUE* evQueue, TrueEvent trueEv, bool& ok) {
 	TrueEvent aux = NOEV;
-	al_get_next_event(evQueue, ev);
-	if (ev->type == ALLEGRO_EVENT_TIMER)
-		aux = TIMERUP;
-	else if (ev->type == ALLEGRO_EVENT_DISPLAY_CLOSE)
-		ok = false;
-	else if (ev->type == ALLEGRO_EVENT_KEY_DOWN)
-		handleKeyPress(ev, aux, true, ok);
-	else if (ev->type == ALLEGRO_EVENT_KEY_UP)
-		handleKeyPress(ev, aux, false, ok);
-	else
-		aux = NOEV;
+	if (al_get_next_event(evQueue, ev))
+	{
+		if (ev->type == ALLEGRO_EVENT_TIMER)
+			aux = TIMERUP;
+		else if (ev->type == ALLEGRO_EVENT_DISPLAY_CLOSE)
+			ok = false;
+		else if (ev->type == ALLEGRO_EVENT_KEY_DOWN)
+			handleKeyPress(ev, aux, true, ok);
+		else if (ev->type == ALLEGRO_EVENT_KEY_UP)
+			handleKeyPress(ev, aux, false, ok);
+		else
+			aux = NOEV;
+	}
 	return aux;
 }
 
