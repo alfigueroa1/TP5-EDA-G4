@@ -13,6 +13,7 @@
 #include "worm.h"
 #include "allegro.h"
 #include "front.h"
+#include "trueEv.h"
 #include "keyboard.h"
 #include "wormFSM.h"
 
@@ -26,7 +27,7 @@ int main(void) {
 	Allegro front;
 	ALLEGRO_EVENT_QUEUE* event_queue;
 	ALLEGRO_EVENT ev;
-	TrueEvent trueEv;
+	TrueEvent trueEv = NOEV;
 
 	bool ok = true, redraw = false, once = true;
 	bool keyPressed[KEYS] = { false, false, false, false, false, false};

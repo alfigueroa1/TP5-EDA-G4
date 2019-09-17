@@ -1,7 +1,7 @@
 #pragma once
 #include "types.h"
 #include "wormFSM.h"
-#include "front.h"
+#include "trueEv.h"
 
 #define WSTATES 6
 #define WEVENTS 6

@@ -2,6 +2,7 @@
 
 #include "allegro.h"
 #include "worm.h"
+#include "trueEv.h"
 #define SCREEN_H 696
 #define SCREEN_W 1920
 #define FPS	50.0
