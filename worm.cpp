@@ -229,6 +229,10 @@ void Worm::toggleLeft(void)
 	lookingRight = false;
 }
 
+bool Worm::getLookingRight(void)
+{
+	return lookingRight;
+}
 //Debugging
 void Worm::print()
 {

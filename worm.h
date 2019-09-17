@@ -1,7 +1,6 @@
 #pragma once
 #include "types.h"
 #include "wormFSM.h"
-#include "allegro.h"
 #include "front.h"
 
 #define WSTATES 6
@@ -36,7 +35,7 @@ public:
 	double getX();
 	double getY();
 	void evHand(TrueEvent ev);
-
+	bool getLookingRight();
 
 private:
 	wormState state;

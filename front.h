@@ -6,10 +6,7 @@
 #define SCREEN_W 1920
 #define FPS	50.0
 
-typedef enum {TIMERUP ,UPPRESS, UPUNPRESS, LPRESS, LUNPRESS, RPRESS, RUNPRESS,
-						WPRESS, WUNPRESS, APRESS, AUNPRESS, DPRESS, DUNPRESS, ESC, NOEV}TrueEvent;
-
-bool draw(Allegro& front, Worm& worm1, Worm& worm2);
+void draw(Allegro& front, Worm& worm1, Worm& worm2);
 bool initFrontend();
 bool initEvGen(Allegro& front);
 bool initDisplay(Allegro& front);
