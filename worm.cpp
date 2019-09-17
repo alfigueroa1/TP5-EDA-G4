@@ -13,7 +13,6 @@ double YCOORD = 616;
 double MOVEINPIXELS = 27;
 
 double G = 0.24;
-double FPS = 50;				//frames per second
 double INITSPEED = 4.5;			//initial speed
 double PI = 3.14159265;
 
@@ -21,38 +20,24 @@ double PI = 3.14159265;
 									CYCLE
  ******************************************************************************/
  
-void Worm::cycle(Allegro& front)
+void Worm::evHand(TrueEvent ev)
 {
-		al_get_next_event(front.getEvQueue(), front.getEv());
-		if ()
+		if (ev == UPPRESS || ev == WPRESS)
 		{
 			next(UP);
 		}
-		else if ()
+		else if (ev == RPRESS || ev == DPRESS)
 		{
 			next(RIGHT);
 		}
-		else if ()
+		else if (ev == LPRESS || ev == APRESS)
 		{
 			next(LEFT);
 		}
-		else if ()
-		{
-			next(HOLDRIGHT);
-		}
-		else if ()
-		{
-			next(HOLDLEFT);
-		}
-		else if ()
-		{
-			next(RELEASE);
-		}
-		else if ()
+		/*else if ()
 		{
 			next(STOP);
-		}
-
+		}*/
 }
 
  /*********************************************************************************

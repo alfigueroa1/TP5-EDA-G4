@@ -2,6 +2,7 @@
 #include "types.h"
 #include "wormFSM.h"
 #include "allegro.h"
+#include "front.h"
 
 #define WSTATES 6
 #define WEVENTS 6
@@ -34,7 +35,7 @@ public:
 	int getSprite();
 	double getX();
 	double getY();
-	void cycle(Allegro& front);
+	void evHand(TrueEvent ev);
 
 
 private:
@@ -49,8 +50,8 @@ private:
 	//										    UP						  RIGHT						    LEFT						HOLDRIGHT					  HOLDLEFT					  STOP
 	cellType wormTable[WSTATES][WEVENTS] = { { {JUMPING, WX(jump)},		 {LOOKRIGHT, WX(toggleRight)}, {LOOKLEFT, WX(toggleLeft)}, {LOOKRIGHT, WX(toggleRight)}, {LOOKLEFT, WX(toggleLeft)}, {IDLE, WX(nothing)} },				//IDLE
 											 { {JUMPING, WX(nothing)},	 {JUMPING, WX(nothing)},	   {JUMPING, WX(nothing)},	   {JUMPING, WX(nothing)},		 {JUMPING, WX(nothing)},	 {JUMPING, WX(nothing)} },			//JUMPING
-											 { {JUMPING, WX(jump)},		 {LOOKRIGHT, WX(nothing)},	   {LOOKLEFT, WX(toggleLeft)}, {MOVERIGHT, WX(walkRight)},	 {LOOKLEFT, WX(toggleLeft)}, {LOOKRIGHT, WX(nothing)} },		//LOOKRIGHT
-											 { {JUMPING, WX(jump)},		 {LOOKRIGHT, WX(toggleRight)}, {LOOKLEFT, WX(nothing)},	   {LOOKRIGHT, WX(toggleRight)}, {MOVELEFT, WX(walkLeft)},	 {LOOKLEFT, WX(nothing)} },			//LOOKLEFT
+											 { {JUMPING, WX(jump)},		 {LOOKRIGHT, WX(walkRight)},   {LOOKLEFT, WX(toggleLeft)}, {MOVERIGHT, WX(walkRight)},	 {LOOKLEFT, WX(toggleLeft)}, {LOOKRIGHT, WX(nothing)} },		//LOOKRIGHT
+											 { {JUMPING, WX(jump)},		 {LOOKRIGHT, WX(toggleRight)}, {LOOKLEFT, WX(walkLeft)},   {LOOKRIGHT, WX(toggleRight)}, {MOVELEFT, WX(walkLeft)},	 {LOOKLEFT, WX(nothing)} },			//LOOKLEFT
 											 { {MOVERIGHT, WX(nothing)}, {MOVERIGHT, WX(nothing)},	   {MOVERIGHT, WX(nothing)},   {MOVERIGHT, WX(nothing)},	 {MOVERIGHT, WX(nothing)},	 {LOOKRIGHT, WX(stopWalking)} },	//MOVERIGHT
 											 { {MOVELEFT, WX(nothing)},	 {MOVELEFT, WX(nothing)},	   {MOVELEFT, WX(nothing)},	   {MOVELEFT, WX(nothing)},		 {MOVELEFT, WX(nothing)},	 {LOOKLEFT, WX(stopWalking)} } };	//MOVELEFT
 };
