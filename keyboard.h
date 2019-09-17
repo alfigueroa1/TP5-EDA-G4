@@ -1,6 +1,6 @@
 #ifndef KEYBOARD_H
 #define KEYBOARD_H
-
+#include "trueEv.h"
 /***************************************************************************//**
   @file     +keyboard.h+
   @brief    +Contiene manejo y recepcion del teclado en Allegro+
