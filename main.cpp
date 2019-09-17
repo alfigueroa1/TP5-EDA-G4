@@ -66,7 +66,7 @@ int main(void) {
 
 
 TrueEvent getNextEv(ALLEGRO_EVENT *ev , ALLEGRO_EVENT_QUEUE* evQueue, TrueEvent trueEv, bool& ok) {
-	TrueEvent aux;
+	TrueEvent aux = NOEV;
 	al_get_next_event(evQueue, ev);
 	if (ev->type == ALLEGRO_EVENT_TIMER)
 		aux = TIMERUP;
