@@ -6,9 +6,14 @@
 bool draw(Allegro& front, Worm& worm1, Worm& worm2) {
 	bool ok = false;
 	al_draw_bitmap(front.getBackground(), 0,0,0);
-	al_draw_bitmap(front.getDrawElement(worm1.getSprite()), worm1.getX(), worm1.getY(), 0);
-
-	al_draw_bitmap(front.getDrawElement(worm2.getSprite()), worm2.getX(), worm2.getY(), 0);
+	if(worm1.getLookingRight() == true)
+		al_draw_bitmap(front.getDrawElement(worm1.getSprite()), worm1.getX(), worm1.getY(), ALLEGRO_FLIP_HORIZONTAL);
+	else
+		al_draw_bitmap(front.getDrawElement(worm1.getSprite()), worm1.getX(), worm1.getY(), 0);
+	if (worm2.getLookingRight() == true)
+		al_draw_bitmap(front.getDrawElement(worm2.getSprite()), worm2.getX(), worm2.getY(), ALLEGRO_FLIP_HORIZONTAL);
+	else
+		al_draw_bitmap(front.getDrawElement(worm2.getSprite()), worm2.getX(), worm2.getY(), 0);
 
 	return ok;
 }
