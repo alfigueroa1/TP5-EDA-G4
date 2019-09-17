@@ -1,6 +1,7 @@
 #pragma once
 #include "types.h"
 #include "wormFSM.h"
+#include "allegro.h"
 
 #define WSTATES 6
 #define WEVENTS 6
@@ -24,6 +25,8 @@ public:
 
 	//acciones
 	void jump();
+	void toggleRight(void);
+	void toggleLeft(void);
 	void walkRight();
 	void walkLeft();
 	void stopWalking();
@@ -31,7 +34,7 @@ public:
 	int getSprite();
 	double getX();
 	double getY();
-	void cycle(void);
+	void cycle(Allegro& front);
 
 
 private:

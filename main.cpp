@@ -14,6 +14,7 @@
 #include "allegro.h"
 #include "front.h"
 #include "keyboard.h"
+#include "wormFSM.h"
 
 int main(void) {
 	Worm worm1(500, 500);
