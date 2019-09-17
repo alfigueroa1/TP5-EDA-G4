@@ -4,6 +4,8 @@
 #include <iostream>
 #include "worm.h"
 
+#define OFFSET 9
+
 using namespace std;
 
 //paredes
@@ -20,24 +22,58 @@ double PI = 3.14159265;
 									CYCLE
  ******************************************************************************/
  
-void Worm::evHand(TrueEvent ev)
+void Worm::stateHand(void)
 {
-		if (ev == UPPRESS || ev == WPRESS)
-		{
-			next(UP);
-		}
-		else if (ev == RPRESS || ev == DPRESS)
-		{
-			next(RIGHT);
-		}
-		else if (ev == LPRESS || ev == APRESS)
-		{
-			next(LEFT);
-		}
-		/*else if ()
-		{
-			next(STOP);
-		}*/
+	switch(state)
+	{
+	case IDLE:
+		if (keys[UP] == true)
+			state = PREJUMP;
+		if (keys[RIGHT] == true)
+			state = LOOKRIGHT;
+		if (keys[LEFT] == true)
+			state = LOOKLEFT;
+		break;
+	case PREJUMP :
+		if (frameCount > 4)
+			state = JUMPING;
+		break;
+	case JUMPING :
+		calcJump();
+		break;
+	case POSTJUMP :
+		if (frameCount > 6)
+			state = IDLE;
+		break;
+	case LOOKRIGHT :
+		if (keys[UP] == true)
+			state = PREJUMP;
+		if (keys[RIGHT] == true)
+			state = MOVERIGHT;
+		if (keys[LEFT] == true)
+			state = LOOKLEFT;
+		break;
+	case LOOKLEFT :
+		if (keys[UP] == true)
+			state = PREJUMP;
+		if (keys[RIGHT] == true)
+			state = LOOKRIGHT;
+		if (keys[LEFT] == true)
+			state = MOVELEFT;
+		break;
+	case MOVERIGHT :
+		if (frameCount == 17 || frameCount == 31 || frameCount == 45)
+			x += OFFSET;
+		if (frameCount > 45)
+			state = IDLE;
+			break;
+	case MOVELEFT :
+		if (frameCount == 17 || frameCount == 31 || frameCount == 45)
+			x -= OFFSET;
+		if (frameCount > 45)
+			state = IDLE;
+			break;
+	}
 }
 
  /*********************************************************************************
@@ -45,17 +81,17 @@ void Worm::evHand(TrueEvent ev)
   ********************************************************************************/
 
 //Inicializando el worm
-//Worm::Worm(double pos_x, double pos_y)
-//{
-//	state = IDLE;
-//	frameCount = 0;
-//	x = pos_x;
-//	y = pos_y;
-//	lookingRight = true;
-//	sprite = 0;
-//	speedY = 0;
-//	speedX = 0;
-//}
+Worm::Worm(double pos_x, double pos_y)
+{
+	state = IDLE;
+	frameCount = 0;
+	x = pos_x;
+	y = pos_y;
+	lookingRight = true;
+	sprite = 0;
+	speedY = 0;
+	speedX = 0;
+}
 
 void Worm::jump()
 {
@@ -69,7 +105,7 @@ void Worm::jump()
 	}
 
 	//warm-up:	sprites 0, 1, 2
-	if (state == JUMPING && 0 <= frameCount && frameCount < 3)
+	if (state == JUMPING && frameCount >= 0 && frameCount < 3)
 	{
 		sprite = frameCount;
 		frameCount++;
@@ -96,7 +132,7 @@ void Worm::jump()
 	}
 
 	//post-jump:	sprites 4, 5, 6, 7, 8, 9
-	else if (state == JUMPING && 4 <= frameCount && frameCount < 10)
+	else if (state == JUMPING && frameCount >= 4 && frameCount < 10)
 	{
 		sprite = frameCount;
 		frameCount++;
@@ -233,6 +269,17 @@ bool Worm::getLookingRight(void)
 {
 	return lookingRight;
 }
+
+void Worm::nothing(void){}
+
+//void Worm::next(int event)
+//{
+//	temp = pTableFSM[static_cast<unsigned int>(state) * columnCount + event];
+//	auto f = bind(temp.action, this);
+//	f();
+//	state = pTableFSM[state * columnCount + event].nextState;
+//}
+
 //Debugging
 void Worm::print()
 {
