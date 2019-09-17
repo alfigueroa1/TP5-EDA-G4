@@ -147,6 +147,7 @@ void Worm::walkRight()
 	if (frameCount >= 3 && frameCount < 17)
 	{
 		sprite = frameCount + 7;
+		//state = HOLDRIGHT;
 	}
 	if (frameCount >= 17 && frameCount < 31)
 	{

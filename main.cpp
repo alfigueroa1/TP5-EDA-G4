@@ -84,10 +84,28 @@ void eventDispatcher(TrueEvent ev, Allegro& front, Worm& worm1, Worm& worm2) {
 	switch (ev) {
 	case UPPRESS:
 		worm1.jump();	break;
-	case UPUNPRESS:
-		worm1.stopJumping();	break;
+	/*case UPUNPRESS:
+		worm1.stopJumping();	break;*/
 	case LPRESS:
-		worm1;
+		worm1.walkLeft();	break;
+	case LUNPRESS: case RUNPRESS:
+		worm1.stopWalking();	break;
+	case RPRESS:
+		worm1.walkRight();		break;
+	case WPRESS:
+		worm2.jump();	break;
+	/*case WUNPRESS:
+		worm2.stopJumping();	break;*/
+	case APRESS:
+		worm2.walkLeft();	break;
+	case AUNPRESS: case DUNPRESS:
+		worm2.stopWalking();	break;
+	case DPRESS:
+		worm2.walkRight();	break;
+	case TIMERUP:
+		worm1.evHand(ev);
+		worm2.evHand(ev);
+		draw(front, worm1, worm2);
 	}
 	return;
 }
