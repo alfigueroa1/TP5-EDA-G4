@@ -20,41 +20,39 @@ double PI = 3.14159265;
 /*******************************************************************************
 									CYCLE
  ******************************************************************************/
-
-void Worm::cycle(void)
+ 
+void Worm::cycle(Allegro& front)
 {
-	while (endCycle == false)
-	{
-		events->getNextEvent();
-		if (events->getCurrentEvent() == )
+		al_get_next_event(front.getEvQueue(), front.getEv());
+		if ()
 		{
 			next(UP);
 		}
-		else if (events->getCurrentEvent() == )
+		else if ()
 		{
 			next(RIGHT);
 		}
-		else if (events->getCurrentEvent() == )
+		else if ()
 		{
 			next(LEFT);
 		}
-		else if (events->getCurrentEvent() == )
+		else if ()
 		{
 			next(HOLDRIGHT);
 		}
-		else if (events->getCurrentEvent() == )
+		else if ()
 		{
 			next(HOLDLEFT);
 		}
-		else if (events->getCurrentEvent() == )
+		else if ()
 		{
 			next(RELEASE);
 		}
-		else if (events->getCurrentEvent() == )
+		else if ()
 		{
 			next(STOP);
 		}
-	}
+
 }
 
  /*********************************************************************************
@@ -62,17 +60,17 @@ void Worm::cycle(void)
   ********************************************************************************/
 
 //Inicializando el worm
-Worm::Worm(double pos_x, double pos_y)
-{
-	state = IDLE;
-	frameCount = 0;
-	x = pos_x;
-	y = pos_y;
-	lookingRight = true;
-	sprite = 0;
-	speedY = 0;
-	speedX = 0;
-}
+//Worm::Worm(double pos_x, double pos_y)
+//{
+//	state = IDLE;
+//	frameCount = 0;
+//	x = pos_x;
+//	y = pos_y;
+//	lookingRight = true;
+//	sprite = 0;
+//	speedY = 0;
+//	speedX = 0;
+//}
 
 void Worm::jump()
 {
@@ -233,6 +231,16 @@ double Worm::getX()
 double Worm::getY()
 {
 	return y;
+}
+
+void Worm::toggleRight(void)
+{
+	lookingRight = true;
+}
+
+void Worm::toggleLeft(void)
+{
+	lookingRight = false;
 }
 
 //Debugging
