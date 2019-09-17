@@ -16,6 +16,10 @@
 #include "keyboard.h"
 #include "wormFSM.h"
 
+TrueEvent getNextEv(ALLEGRO_EVENT* ev, ALLEGRO_EVENT_QUEUE* evQueue, TrueEvent trueEv, bool& ok);
+void eventDispatcher(TrueEvent ev, Allegro& front, Worm& worm1, Worm& worm2);
+
+
 int main(void) {
 	Worm worm1(500, 500);
 	Worm worm2(700, 700);
@@ -45,7 +49,7 @@ int main(void) {
 
 	while (ok)
 	{
-		trueEv = getNextEv(front.getEv(), front.getEvQueue, trueEv, ok);
+		trueEv = getNextEv(front.getEv(), front.getEvQueue(), trueEv, ok);
 		eventDispatcher(trueEv, front, worm1, worm2);
 	}
 
